@@ -1,0 +1,57 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles.css">
+        <title>Sprite Animation Demo</title>
+    </head>
+    <body onload="checkSave()">
+        <div class="container">
+            <div id="newGameContainer" style="display: none;">
+                <div id="newGamePage1">
+                    <div id="newGamePage1Content">
+                        <span>WELCOME TO THIS GAME</span>
+                        <p>NEED SOME INFO HERE AND STUFF TO WELCOME EVERYONE</p>
+                    </div>
+                    <button id="newGamePage1NextButton" onclick="changeNGPage('newGamePage1', 'newGamePage2', 'grid')">NEXT</button>
+                </div>
+                <div id="newGamePage2">
+                    <div id="newGamePage2Content">
+                        <span>PAGE FOR PLAYER INFO</span>
+                        <span>What is your name?<br/>
+                            <input id="newGamePlayerName"/><br/>
+                            Pick a starter POKEMON<br/>
+                            <select>
+                                <option>Pikachu</option>
+                                <option>Squirtle</option>
+                                <option>Charmander</option>
+                            </select>
+                        </span>
+                    </div>
+                    <button id="newGamePage2PrevButton">PREV</button>
+                    <button id="newGamePage2NextButton">NEXT</button>
+                </div>
+                <div id="newGamePage3">
+                    <div id="newGamePage3Content">
+                        <span>YOU GOT THIS</span>
+                        <p>FINAL INFO TO GET THE PLAYER STARTED AND GOING</p>
+                    </div>
+                    <button id="newGamePage3PrevButton">PREV</button>
+                    <button id="newGamePage3CloseButton">CLOSE</button>
+                </div>
+            </div>
+            <div class="sprite-view-frame" id="spriteFrame" style="display: none;">
+                <div class="sprite-renderer" id="spriteRender"></div>
+            </div>
+            <div id="dungeonBox" style="display: none;">Dungeons</div>
+            <div id="farmBox" style="display: none;">Farm</div>
+            <div id="labBox" style="display: none;">Lab</div>
+            <div id="nurseryBox" style="display: none;">Nursery</div>
+            <div id="labInternal">
+                <div id="prof">Prof</div>
+                <div id="labExit">exit</div>
+            </div>
+        </div>
+        <script src="scripts.js"></script>
+    </body>
+</html>
