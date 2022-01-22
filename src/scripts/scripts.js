@@ -30,7 +30,8 @@ let Player = {
         berry2: 0,
         berry3: 0
     },
-    settings: {}
+    settings: {},
+    newGame: true
 }
 
 function checkSave() {
@@ -43,18 +44,30 @@ function newGame() {
     console.log(Player);
     newGameContainer.style.display = "block";
 }
+function startGame() {
+    Player.name = document.getElementById("newGamePlayerName").value;
+    Player.pokemon[0] = findPokemonByName(document.getElementById("playerFirstPokemon").value);
+    Player.newGame = false;
+    console.log(Player);
+    localStorage.setItem("idleMon", JSON.stringify(Player));
+    window.location.reload();
+}
 
 function loadGame() {
-    newGameContainer = "none";
+    newGameContainer.style.display = "none";
     farmBox.style.display = "block";
     dungeonBox.style.display = "block";
     labBox.style.display = "block";
     nurseryBox.style.display = "block";
     spriteView.style.display = "block";
-
+    Player = JSON.parse(localStorage.getItem("idleMon"));
 }
 
 function changeNGPage(pageFrom, pageTo, pageStyle) {
+    if (pageTo === "newGamePage3" && document.getElementById("newGamePlayerName").value == '') {
+        alert("Please enter a value for your name.");
+        return
+    }
     document.getElementById(pageFrom).style.display = "none";
     document.getElementById(pageTo).style.display = pageStyle;
 }
@@ -94,7 +107,7 @@ function loadLab() {
 }
 
 document.addEventListener("keydown", (e) => {
-    if(!["w", "a", "s", "d"].includes(e.key)) return;
+    if(!["w", "a", "s", "d"].includes(e.key) || Player.newGame === true) return;
     checkCollision(spriteRenderer.getBoundingClientRect());
     switch (e.key) {
         case "w":
@@ -125,8 +138,8 @@ document.addEventListener("keydown", (e) => {
             if (spriteDirection != "right") {
                 spriteDirection = "right";
             }
-            if (spriteTop < 100) {
-                spriteTop +=1;
+            if (spriteLeft < 100) {
+                spriteLeft +=1;
             }
             break;
         default:
@@ -134,7 +147,7 @@ document.addEventListener("keydown", (e) => {
     }
     root.style.setProperty(
         "--sprite-sheet-url",
-        `url(./link-spritesheet-${spriteDirection}.png)`
+        `url(../images/link-spritesheet-${spriteDirection}.png)`
     );
     spriteRenderer.classList.add("animating");
     spriteView.style.setProperty("top", `${spriteTop}%`);

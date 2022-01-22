@@ -15,7 +15,7 @@ body {
     --animation-length: 0.5s;
     --sprite-top: 50%;
     --sprite-left: 50%;
-    --sprite-sheet-url: url("./link-spritesheet-down.png");
+    --sprite-sheet-url: url("../images/link-spritesheet-down.png");
 }
 .container {
     width: 100%;

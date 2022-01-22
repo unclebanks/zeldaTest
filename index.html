@@ -2,7 +2,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="src/styles/styles.css">
         <title>Sprite Animation Demo</title>
     </head>
     <body onload="checkSave()">
@@ -21,23 +21,24 @@
                         <span>What is your name?<br/>
                             <input id="newGamePlayerName"/><br/>
                             Pick a starter POKEMON<br/>
-                            <select>
-                                <option>Pikachu</option>
-                                <option>Squirtle</option>
-                                <option>Charmander</option>
+                            <select id="playerFirstPokemon">
+                                <option value="Pikachu">Pikachu</option>
+                                <option value="Squirtle">Squirtle</option>
+                                <option value="Charmander">Charmander</option>
+                                <option value="Bulbasaur">Bulbasaur</option>
                             </select>
                         </span>
                     </div>
-                    <button id="newGamePage2PrevButton">PREV</button>
-                    <button id="newGamePage2NextButton">NEXT</button>
+                    <button id="newGamePage2PrevButton" onclick="changeNGPage('newGamePage2', 'newGamePage1', 'grid')">PREV</button>
+                    <button id="newGamePage2NextButton" onclick="changeNGPage('newGamePage2', 'newGamePage3', 'grid')">NEXT</button>
                 </div>
                 <div id="newGamePage3">
                     <div id="newGamePage3Content">
                         <span>YOU GOT THIS</span>
                         <p>FINAL INFO TO GET THE PLAYER STARTED AND GOING</p>
                     </div>
-                    <button id="newGamePage3PrevButton">PREV</button>
-                    <button id="newGamePage3CloseButton">CLOSE</button>
+                    <button id="newGamePage3PrevButton" onclick="changeNGPage('newGamePage3', 'newGamePage2', 'grid')">PREV</button>
+                    <button id="newGamePage3CloseButton" onclick="startGame()">CLOSE</button>
                 </div>
             </div>
             <div class="sprite-view-frame" id="spriteFrame" style="display: none;">
@@ -52,6 +53,8 @@
                 <div id="labExit">exit</div>
             </div>
         </div>
-        <script src="scripts.js"></script>
+        <script src="src/scripts/scripts.js"></script>
+        <script src="src/scripts/db.js"></script>
+        <script src="src/scripts/tools.js"></script>
     </body>
 </html>
