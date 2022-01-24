@@ -6,7 +6,7 @@
         <title>Sprite Animation Demo</title>
     </head>
     <body onload="checkSave()">
-        <div class="container">
+        <div class="container" id="mainContainer">
             <div id="newGameContainer" style="display: none;">
                 <div id="newGamePage1">
                     <div id="newGamePage1Content">
@@ -41,16 +41,22 @@
                     <button id="newGamePage3CloseButton" onclick="startGame()">CLOSE</button>
                 </div>
             </div>
-            <div class="sprite-view-frame" id="spriteFrame" style="display: none;">
+            <div class="sprite-view-frame" id="spriteFrame">
                 <div class="sprite-renderer" id="spriteRender"></div>
             </div>
             <div id="dungeonBox" style="display: none;">Dungeons</div>
             <div id="farmBox" style="display: none;">Farm</div>
             <div id="labBox" style="display: none;">Lab</div>
             <div id="nurseryBox" style="display: none;">Nursery</div>
-            <div id="labInternal">
+            <div id="labInternal" style="display: none;">
                 <div id="prof">Prof</div>
                 <div id="labExit">exit</div>
+            </div>
+            <div id="nurseryInternal" style="display: none;">
+                <div id="dayCare">DayCare</div>
+                <div id="shop">SHOP</div>
+                <div id="compete">COMPETE</div>
+                <div id="nurseryExit">Exit</div>
             </div>
         </div>
         <script src="src/scripts/scripts.js"></script>

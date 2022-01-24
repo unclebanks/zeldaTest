@@ -33,6 +33,9 @@ let Player = {
     settings: {},
     newGame: true
 }
+let Game = {
+    currentPage: "mainContainer"
+}
 
 function checkSave() {
     if(!localStorage.getItem("idleMon")) {
@@ -73,18 +76,19 @@ function changeNGPage(pageFrom, pageTo, pageStyle) {
 }
 
 function checkCollision(spriteLocation) {
-    let dungeonBound = dungeonBox.getBoundingClientRect();
-    let labBound = labBox.getBoundingClientRect();
-    let nurseryBound = nurseryBox.getBoundingClientRect();
-    let farmBound = farmBox.getBoundingClientRect();
-    if(collisionLogic(dungeonBound, spriteLocation) === true) {
-        alert("dungeonBox");
-    } else if(collisionLogic(labBound, spriteLocation) === true) {
-        loadLab();
-    } else if(collisionLogic(nurseryBound, spriteLocation) === true) {
-        alert("nursery")
-    } else if(collisionLogic(farmBound, spriteLocation) === true) {
-        alert("farm")
+    let mainContainer = document.getElementById(Game.currentPage);
+    if (mainContainer.hasChildNodes) {
+        let childNodes = 0;
+        while (childNodes < mainContainer.children.length) {
+            if (mainContainer.children[childNodes].style.display != "none" && mainContainer.children[childNodes].id != "spriteFrame") {
+                let iteratedBox = mainContainer.children[childNodes];
+                if (collisionLogic(iteratedBox.getBoundingClientRect(), spriteLocation) === true) {
+                    console.log(iteratedBox.id);
+                    loadBox(iteratedBox.id);
+                }
+            }
+            childNodes++;
+        }
     }
 }
 function collisionLogic(areaToCheck, spriteLocation) {
@@ -98,12 +102,18 @@ function collisionLogic(areaToCheck, spriteLocation) {
         return true;
     } else { return false }
 }
-function loadLab() {
+function loadBox(packageToLoad) {
     farmBox.style.display = "none";
     dungeonBox.style.display = "none";
     labBox.style.display = "none";
     nurseryBox.style.display = "none";
-    document.getElementById('labInternal').style.display = "block";
+    switch(packageToLoad) {
+        case "labBox": { document.getElementById('labInternal').style.display = "block"; Game.currentPage = "labInternal"; }
+        break;
+        case "nurseryBox": { document.getElementById('nurseryInternal').style.display = "block"; Game.currentPage = "nurseryInternal"; }
+        break;
+        default: return;
+    }
 }
 
 document.addEventListener("keydown", (e) => {
@@ -117,6 +127,9 @@ document.addEventListener("keydown", (e) => {
             if (spriteTop > 0) {
                 spriteTop -= 1
             };
+            if (spriteTop === 0) {
+                alert(Game.currentPage);
+            }
             break;
         case "s":
             if (spriteDirection != "down") {
